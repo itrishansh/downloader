@@ -40,9 +40,9 @@ class DownloadThread (threading.Thread):
         
 class Downloader:
 
-    def __init__(self, url, name = '', n_threads=2, part_size = 100000000):
+    def __init__(self, url, fname , n_threads=2, part_size = 100000000):
         self.url = url
-        self.name = name
+        self.name = fname
         self.n_threads = n_threads
         self.part_size = part_size
         self.info = {}
