@@ -11,7 +11,7 @@ def usage():
 
 def main():
     url = ''
-    output_file = ''
+    output_file = 'dummy'
     nthread = 2
     part = 100000000
     try:
@@ -41,10 +41,13 @@ def main():
                 usage()
                 sys.exit(2)
     
+    if url == '':
+        usage()
+        sys.exit(2)
     #print "url = %s" % url
     #print "output file = %s" % output_file
-    print 'remove below line'
-    url = 'http://ftp.riken.jp/Linux/fedora/releases/21/Workstation/x86_64/iso/Fedora-Live-Workstation-x86_64-21-5.iso'
+    #print 'remove below line'
+    #url = 'http://download.fedoraproject.org/pub/fedora/linux/releases/21/Workstation/x86_64/iso/Fedora-Live-Workstation-x86_64-21-5.iso'
     d = Downloader(url, output_file, nthread, part)
     
 
