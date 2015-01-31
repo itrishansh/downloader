@@ -1,13 +1,9 @@
-#!/usr/bin/python
-
-#new enhanced downloader
-
 import sys
-import time
-import random
 import Queue
 import cStringIO
 import threading
+
+from DownloadThread import DownloadThread
 
 try:
     import pycurl
@@ -15,29 +11,6 @@ except:
     print "Please install pycurl"
     sys.exit(0)
 
-class DownloadThread (threading.Thread):
-    def __init__(self,id, name, que, ql, exit, url):
-        threading.Thread.__init__(self)
-        self.id = id
-        self.name = name
-        self.q = que
-        self.ql = ql
-        self.exit = exit
-    
-    def run(self):
-        while not self.exit():
-            #print "%s: flag - %d" % (self.name, exitFlag)
-            self.ql.acquire()
-            if not self.q.empty():
-                data = self.q.get()
-                self.ql.release()
-                print "%s processing %s" % (self.name, data)
-                #time.sleep(random.randint(0,10))
-            else:
-                self.ql.release()
-        print "Terminating ", self.name
-
-        
 class Downloader:
 
     def __init__(self, url, fname , n_threads=2, part_size = 100000000):
@@ -141,9 +114,3 @@ class Downloader:
         return self.exitFlag
 
 
-def main():
-    url = 'http://ftp.riken.jp/Linux/fedora/releases/21/Workstation/x86_64/iso/Fedora-Live-Workstation-x86_64-21-5.iso'
-    d = Downloader(url)
-    
-if __name__ == '__main__':
-    main()

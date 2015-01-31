@@ -4,7 +4,7 @@
 
 import sys, getopt
 
-from downloader import Downloader, DownloadThread
+from downloader.Downloader import Downloader
 
 def usage():
     print "%s -u <url> -o <outputfile> -n <nthreads> -p <max part size>" % sys.argv[0]
