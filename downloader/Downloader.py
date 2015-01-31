@@ -1,5 +1,6 @@
 import os
 import sys
+import time
 import Queue
 import cStringIO
 import threading
@@ -117,7 +118,7 @@ class Downloader:
         
         # Wait for queue to empty
         while not workQueue.empty():
-            pass
+            time.sleep(1)
             
         # Notify threads it's time to exit
         #print "Modifying exitFlag"
