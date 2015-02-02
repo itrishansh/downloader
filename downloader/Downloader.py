@@ -15,7 +15,7 @@ except:
 
 class Downloader:
 
-    def __init__(self, url, fname , n_threads=2, part_size = 100000000):
+    def __init__(self, url, fname , n_threads=10, part_size = 10000000):
         self.url = url
         self.name = fname
         self.n_threads = n_threads
