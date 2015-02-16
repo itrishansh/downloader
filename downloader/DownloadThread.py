@@ -34,7 +34,11 @@ class DownloadThread (threading.Thread):
                 #print 'Downloading',part
                 c.setopt(c.RANGE, part)
                 c.setopt(c.WRITEDATA, fp)
-                c.perform()
+                try:
+                    c.perform()
+                except pycurl.error:
+                    print "Todo: restart this section"
+                downloaded = c.getinfo(c.SIZE_DOWNLOAD)
                 fp.close()
                 c.close()
                 #time.sleep(random.randint(0,10))

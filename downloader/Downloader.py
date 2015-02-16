@@ -11,6 +11,11 @@ try:
     import pycurl
 except:
     print "Please install pycurl"
+    print "For Fedora,Red Hat and CentOS"
+    print "yum install python-pycurl.x86_64"
+    print
+    print "For Debian, Ubuntu and Mint"
+    print "apt-get install pycurl"
     sys.exit(0)
 
 class Downloader:

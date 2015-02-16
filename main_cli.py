@@ -3,6 +3,7 @@
 # This file parse command line options and call downloader.
 
 import sys, getopt
+import logging
 
 from downloader.Downloader import Downloader
 
@@ -12,8 +13,8 @@ def usage():
 def main():
     url = ''
     output_file = 'dummy'
-    nthread = 2
-    part = 100000000
+    nthread = 20
+    part = 10000000
     try:
         opts, args = getopt.getopt(sys.argv[1:], "hu:o:n:p:", ["url=", "outputfile=", "nthread=", "part="])
     except getopt.GetoptError:
@@ -50,6 +51,9 @@ def main():
     #url = 'http://download.fedoraproject.org/pub/fedora/linux/releases/21/Workstation/x86_64/iso/Fedora-Live-Workstation-x86_64-21-5.iso'
     d = Downloader(url, output_file, nthread, part)
     
-
+logging.basicConfig(level=logging.INFO)
+logger = logging.getLogger(__name__)
+formatter = logging.Formatter('%(asctime)s - %(name)s - %(levelname)s - %(message)s')
+#handler.setFormatter(formatter)
 if __name__ == '__main__':
     main()
